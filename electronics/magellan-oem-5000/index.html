@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Alessandro Zummo, Electronics - Magellan OEM 5000 GPS</title>
+</head>
+<body>
+17/06/2002
+<br>
+<br>
+    These are some infos i've collected about the Magellan OEM 5000 GPS.
+<br>
+    Most of them are quite old and were discovered by examining the output<br>
+    of a program i've got on a diskette when i bought the GPS, so they can
+ be<br>
+    inaccurate or even buggy.<br>
+    <br>
+    Remember this GPS is very slow on cold-start, be prepared to wait<br>
+    up to 20 minutes. As long as you manage to get strings out of it, you're<br>
+    on the right way.<br>
+    <br>
+     It should initialize faster if you send the correct time and L/L.<br>
+    <br>
+    You can download the raw <a href="oem5000.raw.gz">image</a> of the above-mentioned<br>
+   &nbsp;diskette. If you use linux, you can mount it this way:<br>
+   <br>
+   &nbsp; mount -t vfat -o loop oem5000.raw /mnt<br>
+   <br>
+   use<br>
+   <br>
+   &nbsp;dd if=oem5000.raw of=/dev/fd0<br>
+   <br>
+   to dump it to a floppy disk.<br>
+   <br>
+   You will find three executable programs and an ASCII file.<br>
+   This file can be used to program the GPS.. just throw it with<br>
+   &nbsp;any terminal program.. i have tried it some years ago, can't<br>
+   &nbsp;remember the result ;)<br>
+    <br>
+    &nbsp;One of these proggies is very useful to debug the GPS<br>
+   &nbsp;protocol: you can connect two computers with a null-modem<br>
+   &nbsp;cable and run a terminal program on the second one to<br>
+   &nbsp;see it's output.<br>
+   <br>
+  &nbsp;here's the connector pinout:<br>
+  <br>
+   
+<ol>
+    <li>&nbsp;+5V</li>
+    <li>GND</li>
+    <li>3,6V backup battery</li>
+    <li>backup battery GND</li>
+    <li>+5V for antenna power (be careful with this)</li>
+    <li>+V for LED</li>
+    <li>RX TTL</li>
+    <li>TX TTL</li>
+    <li>nc</li>
+    <li>nc</li>
+    <li>Baud Select 1</li>
+    <li>nc</li>
+    <li>Baud Select 2</li>
+    <li>nc</li>
+    <li>GPS on &gt; +3,6V<br>
+    </li>
+   
+</ol>
+  &nbsp;You need a TTL/CMOS translator (MAX232 for example) to<br>
+  connect the GPS to your computer.<br>
+  <br>
+  &nbsp;The usual disclaimer applies: i'm not responsible of any damage you
+ will make.<br>
+  <br>
+  &nbsp;Here are two images of the datasheet i got with the GPS. &nbsp;Unluckly
+ for you, it's in Italian ;). [ <a href="oem5000_ds.png">img1</a> <a
+ href="oem5000_ds_detail.png">img2</a> ].<br>
+  <br>
+  &nbsp;Useful links:<br>
+ 
+<ul>
+   <li><a href="http://web.usna.navy.mil/%7Ebruninga/APRS-docs/GPS.TXT">link1</a></li>
+   <li><a href="http://www.aprs.net/vm/DOS/GPS.HTM">link2</a><br>
+   </li>
+ 
+</ul>
+ <br>
+   &nbsp;Where to go from now on:   
+<ul>
+     <li>make this page look better (help needed)</li>
+     <li>update and correct the protocol</li>
+     <li>make a PIC program to initialize the GPS on startup.<br>
+   </li>
+     
+</ul>
+ <br>
+ <br>
+   &nbsp;If you want to help, just send <a
+ href="mailto&#58;azummo-oem5000&#064;towertech&#46;it">me</a> an email.<br>
+   <br>
+   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Alessandro Zummo<br>
+   <br>
+<br>
+<table cellpadding="2" cellspacing="2" border="1" width="80%"
+ align="center">
+  <tbody>
+    <tr>
+      <td valign="top" width="20%">$GPZDA,hhmmss,dd,mm,yyyy,<br>
+      </td>
+      <td valign="top">Set date and time<br>
+      <small>hhmmss: UTC time<br>
+dd: day of month (0-31)<br>
+mm: month (1-12)<br>
+yyyy: year</small><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">$PMGLU,04,nn,k<br>
+      </td>
+      <td valign="top" width="20%">Include/Exclude satellites<br>
+      <small>nn: Satellite number<br>
+k: 0 - exclude, 1 - include, 2 - normal</small><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="40">$PMGLI,00,aaa,b,c,dd<br>
+      </td>
+      <td valign="top">Activate/Deactivate sentence<br>
+      <small>aaa: Primary index (sentence number)<br>
+b: Timing<br>
+c: Format (A=ASCII, B=BINARY)<br>
+dd: Satellite number</small><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">$GPHVM<br>
+      </td>
+      <td valign="top">Set user variation (?)<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">$PMGLD,00,k<br>
+      </td>
+      <td valign="top">Set mode ( 2D - 3D)<br>
+      <small>k: 2 = &nbsp;2D, 3 = AUTO</small><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">$GPWPL,aaaa.aa,N,bbbbb.bb,E,abcd</td>
+      <td valign="top">Set waypoint<br>
+      <small><br>
+aaaa.aa: latitude ( N=North, S=South)<br>
+bbbbb.bb: longitude (E=East, W=West)<br>
+abcd: Waypoint ID</small><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pre><br><br><br><br>On nav.exe startup:<br><br>$PMGLI,00,U01,1,A,  *57                                                         <br>$PMGLI,00,U02,1,A,  *54   <br><br><br>Cold start<br><br>$GPZDA,225920,08,06,1999,*6C                                                    <br>$PMGLI,00,E00,2,A,  *45                                                         <br>$PMGLI,00,R04,6,A,  *52                                                         <br>$PMGLI,00,B00,2,A,  *42                                                         <br>$PMGLI,00,F02,2,A,  *44                                                         <br>$PMGLI,00,G00,4,A,  *41                                                         <br>$PMGLI,00,H00,2,A,  *48                                                         <br>$PMGLI,00,A00,2,A,  *41                                                         <br>$PMGLI,00,D00,6,A,  *40                                                         <br>$PMGLI,00,S01,6,A,  *56                                                         <br>$PMGLI,00,B02,2,A,  *40                                                         <br>$PMGLI,00,K01,0,A,  *48                                                         <br>$PMGLI,00,K02,0,A,  *4B                                                         <br>$PMGLI,00,K03,0,A,  *4A                                                         <br>                                                                                <br>Those PMGLI sentences are used to activate/deactivate a specific<br>sentence. PM is the prefix assigned to Magellan and it's used for<br>proprietary sentences.<br><br>This is the format:<br><br><br>The primary index values map follows:<br><br>B00 GPGGA<br>B01 GPGLL<br>E00 GPVTG<br>R04 GPHVG<br>A00 GPZDA<br><br>H00 PMGLH<br>S01 PMGLS<br>G00 PMGLG<br>F02 PMGLF<br>D00 PMGLD<br>C00 PMGLC<br>B03 PMGLB<br><br><br>Timing:<br><br>                0 = off<br>       		6 = 30 secs<br>		7 = 1 min<br>		8 = 2 min<br>		9 = 5 min&nbsp;&nbsp;<br>                                                                 <br>Initialize L/L<br><br>$GPGGA,000000,1111.11,N,22222.22,E,0,0,000,001,M,000, *33 <br><br><br><br><br>Set waypoint<br><br>$GPWPL,1111.11,N,22222.22,E,ABCD*4D<br><br>	abcd = Waypoint ID<br><br>Set route<br>$PMGLR,08,00,SRC0,DST0*4D<br><br>Datum and units<br><br>$PMGLS,01,1,47,1,1,1*47 <br>       aa b cc d e f<br><br>		aa	= fixed at 01<br>		b	= Terrain 0 = clr, 1 = int, 2 = obst<br>		cc	= Datum (01-47)<br>		d	= Units 0 = KT, 1 = KM, 2 = MPH<br>		e	= Alitude 0 = Feet, 1 = Meters<br>  		f	= Mag Var 0 = user, 1 = auto<br><br><br><br>Rename waypoint<br><br>$PMGLR,10,LFIX,WAYP*6D <br>       aa bbbb cccc<br><br>		aa		= fixed at 10<br>		bbbb	= Waypoint name, LFIX to store current pos<br>		cccc	= New name, 0000 to clear<br><br>Sat select<br><br>$PMGLM,00,0*6B<br>       aa b<br><br>		aa	= Fixed<br>		b	= 0 = no, 1 = yes<br><br>Master reset<br><br>$PMGLN,00,1*69<br>       aa b<br><br>		aa	= fixed<br>		b	= Clear memory 0 = no, 1 = yes<br><br>Cold start:<br><br>$GPZDA,212013,04,05,2001,*65                                                    <br>$PMGLI,00,E00,2,A,  *45                                                         <br>$PMGLI,00,R04,6,A,  *52                                                         <br>$PMGLI,00,B00,2,A,  *42                                                         <br>$PMGLI,00,F02,2,A,  *44                                                         <br>$PMGLI,00,G00,4,A,  *41                                                         <br>$PMGLI,00,H00,2,A,  *48                                                         <br>$PMGLI,00,A00,2,A,  *41                                                         <br>$PMGLI,00,D00,6,A,  *40                                                         <br>$PMGLI,00,S01,6,A,  *56                                                         <br>$PMGLI,00,B02,2,A,  *40                                                         <br>$PMGLI,00,K01,0,A,  *48                                                         <br>$PMGLI,00,K02,0,A,  *4B                                                         <br>$PMGLI,00,K03,0,A,  *4A                                                         <br><br>Altitude aid<br><br>$PMGLB,02,000010,M*36  <br>       aa bbbbbb c<br><br>		aa	= fixed<br>		bb	= altitude<br>		c	= Meters / Feet<br><br></pre>
+      <br>
+       <br>
+  <br>
+ <br>
+</body>
+</html>
