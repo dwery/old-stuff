@@ -1,0 +1,29 @@
+
+
+ Pin # | Name     | Pin Type
+-----------------------------
+   1   | DOE      | Clock/Input
+   2   | /RESET   | Input
+   3   | RD       | Input
+   4   | /MATCH   | Input
+   5   | /BERR    | Input
+   6   | /CFGIN   | Input
+   7   | A2       | Input
+   8   | A3       | Input
+   9   | A4       | Input
+  10   | A5       | Input
+  11   | A6       | Input
+  12   | GND      | GND
+  13   | A1       | Input
+  14   | D15      | Output
+  15   | D14      | Output
+  16   | D13      | Output
+  17   | D12      | Output
+  18   | /CFGOUT  | Output
+  19   | /SHUTUP  | Output
+  20   | /SLAVE   | Output
+  21   | /PRECFG  | Output
+  22   | /DBOE    | Output
+  23   | /BDSEL   | Output
+  24   | VCC      | VCC
+
