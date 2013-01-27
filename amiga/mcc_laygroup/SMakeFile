@@ -1,0 +1,51 @@
+# Generates LayGroup classes
+# (c) 1997-98 Alessandro Zummo
+
+REVDIR    = rev/
+
+LINKERLIBS  = lib:sc.lib lib:amiga.lib lib:debug.lib
+LINKERFLAGS = SC StripDebug BATCH NOICONS
+CFLAGS      = StringMerge NoStackCheck NoStackExt UnsignedChars \
+      CommentNest ErrorRexx NoMultipleIncludes \
+      StructureEquivalence NoIcons GenProtoParameters NoDebug \
+      Ignore=147 MultipleCharacterConstants STREQ\
+      MemorySize=Huge IDLen=64
+
+UTILS   = brush2c include:mui/LayGroup_mcc.h
+BRUSHES = prefs_image.c
+CLASSES = LayGroup.mcc LayGroup.mcp
+
+all: $(UTILS) $(BRUSHES) $(CLASSES)
+
+
+install:
+   @echo "*e[32mInstall classes...*e[0m"
+   @copy $(CLASSES) MUI:Libs/mui/
+
+clean:
+   @echo "*e[32mClean up...*e[0m"
+   @delete $(CLASSES) $(BRUSHES) $(UTILS) *.o 
+
+prefs_image.c: prefs_image.mbr
+   @echo "*e[32mMaking brush source $@*e[0m"
+   @brush2c $< > $@
+
+include:mui/LayGroup_mcc.h: mui/LayGroup_mcc.h
+	@copy mui/LayGroup_mcc.h include:mui/
+
+LayGroup.mcc: LayGroup.c layout.c
+   @echo "*e[32mMaking new custom class $@*e[0m"
+   @sc $(CFLAGS) $*.c OBJNAME $*.o
+   @slink to $@ from $*.o lib $(LINKERLIBS) $(LINKERFLAGS)
+   @copy $@ MUI:Libs/MUI
+   @copy $@ Libs/MUI
+   @avail flush
+
+LayGroup.mcp: LayGroupp.c
+   @echo "*e[32mMaking new custom class $@*e[0m"
+   @sc $(CFLAGS) $*.c OBJNAME $*.o
+   @slink to $@ from $*.o lib $(LINKERLIBS) $(LINKERFLAGS)
+   @copy $@ MUI:Libs/MUI
+   @copy $@ Libs/MUI
+   @avail flush
+

@@ -1,0 +1,33 @@
+
+
+ MCC LayGroup -- Registration Report
+
+ MCC LayGroup is (c) 1997-1998 by Alessandro Zummo
+
+
+ Classname:
+
+         LayGroup.mcc
+         LayGroup.mcp
+
+ Public:
+
+         MUIA_LayGroup_ChildNumber  0xa5530001
+         MUIA_LayGroup_MaxHeight    0xa5530002
+         MUIA_LayGroup_MaxWidth     0xa5530003
+         MUIA_LayGroup_HorizSpacing 0xa5530004
+         MUIA_LayGroup_VertSpacing  0xa5530005
+         MUIA_LayGroup_Spacing      0xa5530006
+         MUIA_LayGroup_LeftOffset   0xa5530007
+         MUIA_LayGroup_TopOffset    0xa5530008
+
+ Config:
+
+         MUICFG_LayGroup_Back       0xa5530001
+         MUICFG_LayGroup_Frame      0xa5530002
+         MUICFG_LayGroup_HSpace     0xa5530003
+         MUICFG_LayGroup_VSpace     0xa5530004
+         MUICFG_LayGroup_LOff       0xa5530005
+         MUICFG_LayGroup_TOff       0xa5530006
+
+ MCC END

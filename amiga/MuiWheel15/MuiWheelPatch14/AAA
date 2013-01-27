@@ -1,0 +1,1 @@
+run >NIL: prog:CyberTools/cyberguard/cyberguard STACKLINES=8 showPC FILE=CON:0/0/640/100/CyberGuard/Auto/Close

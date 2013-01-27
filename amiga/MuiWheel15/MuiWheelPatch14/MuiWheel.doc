@@ -1,0 +1,175 @@
+
+
+
+                               MuiWheel 1.5
+
+                          MUI has got the wheel!
+
+                Copyright (c) 1998-2002 by Alessandro Zummo
+
+                            All Rights Reserved
+
+                   Commercial use is strictly forbidden
+
+                                 CardWare
+
+
+
+Introduction
+------------
+
+ MuiWheel is a complex patch to allow some classes
+ of the Magic User Interface to react correctly
+ to your mouse wheel movements. It includes
+ a MuiWheel.mcp class to set up the preferences.
+ If you don't have a wheeled mouse, this program
+ will not be useful to you, if you don't
+ even know what a wheeled mouse is, go
+ to the LogiTech homepage, i'm sure you
+ will buy one soon. For more informations
+ download NewMouse from Aminet.
+
+ Please *READ* this doc before using it.
+
+ The following classes will be patched:
+
+ - Cycle.mui
+ - Numeric.mui (Slider.mui, Knob.mui, Numericbutton.mui, ...)
+ - List.mui
+ - Prop.mui
+ - Virtgroup.mui (Scrollgroup.mui)
+
+
+Copyright
+----------
+
+ This software is subject to the "Standard Amiga FD-Software Copyright Note"
+ It is Cardware as defined in paragraph 4c. 
+ If you like it and use it regularly please send a postcard to the author.
+ For more information please read "AFD-COPYRIGHT" (Version 1 or higher).
+
+
+Upgrading from version 1.0
+--------------------------
+
+ Follow the "Installation and Usage" chapter, just remember 
+ that the patch for muimaster.library is NO MORE NEEDED,
+ so you can copy the original muimaster.library in place.
+ You should then set the new preferences with the MUI preferences 
+ editor, since you can now enable/disable every single patch.
+ Oh.. a postcard will be appreciated :-)
+
+
+Installation and Usage
+----------------------
+
+ MuWheelPatch needs to be loaded only one time. Anyway,
+ a check is made, so you can't do anything dangerous if you
+ run it twice.
+
+ To install the patch, simply copy MuiWheelPatch in your C: directory
+ and add the relative call somewhere
+ in your s:startup-sequence, but BEFORE any other program
+ that uses MUI is launched. The standard MUI assignment
+ section is a good place.
+
+ Example:
+
+  ...somewhere in your startup-sequence...
+
+  C:Run <>NIL: C:MuiWheelPatch
+
+ or
+
+  if exists ......
+   assign MUI: ......
+   if exists MUI:Libs
+      assign add LIBS: MUI:Libs
+   endif
+   if exists MUI:Locale
+      assign add LOCALE: MUI:Locale
+   endif
+   version >nil: exec.library 39
+   if not warn
+      if exists MUI:Docs
+         if exists HELP:dummy ; do not remove
+         endif                ; this entry!
+         assign add HELP: MUI:Docs
+      endif
+   endif
+   C:Run <>NIL: C:MuiWheelPatch ; MUI has got the wheel!
+  endif
+
+
+ Now you should copy the given MuiWheel.mcp class 
+ to MUI:Libs/mui/ 
+
+ Remember that MuiWheelPatch will not work with versions of 
+ muimaster.library other than 19. As far as i can tell you
+ the wheel support will be added in the next MUI release.
+
+ Obviously you *NEED* a MouseWheel
+ compatible *mouse* *driver*, such as NewMouse.
+
+ You're now ready to run. Reboot your system
+ and start MUI:MUI to set the preferences.
+
+ PLEASE NOTE that due to the particular nature of this
+ patch, even if the new preferences are updated
+ on-the-fly, the "Test" gadget in the MUI preferences
+ does not work. 
+
+
+Future
+------
+
+ I'm waiting for suggestions...(and postcards too..) :-)
+
+
+Developer infos
+---------------
+
+ Write me an email...
+
+
+History
+-------
+
+ 1.0 - (30.07.1998) + First release
+
+ 1.1 - (07.09.1998) + Added Virtgroup.mui patch
+                    + Added Enable gadget in prefs
+                    + Now works also with IBrowse!
+                    - Not released
+
+ 1.2 - (10.12.1998) + All the patches are now done in a better
+                    + and clean way. intuition.libary is no
+                    + more patched nor is required the 
+                    + patch muimaster.library. 
+                    + Changed the prefs editor.
+
+ 1.3 - (xx.xx.xxxx) * Can't remember
+
+ 1.4 - (27.05.2000) + Some bug fixes
+                    + Added FreeWheel support
+
+Author
+------
+
+ EMail: 
+
+  azummo-mw@towertech.it
+
+
+ Homepage: 
+
+  http://www.towertech.it/azummo/
+
+
+ Snail Mail:
+
+  Via S. F. d'Assisi, 27
+  10121 Turin
+  Italy
+
+

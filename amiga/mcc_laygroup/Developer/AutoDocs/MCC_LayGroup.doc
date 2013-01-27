@@ -1,0 +1,218 @@
+TABLE OF CONTENTS
+
+LayGroup.mcc/LayGroup.mcc
+LayGroup.mcc/MUIA_Group_SameSize 
+LayGroup.mcc/MUIA_LayGroup_ChildNumber 
+LayGroup.mcc/MUIA_LayGroup_MaxHeight   
+LayGroup.mcc/MUIA_LayGroup_MaxWidth    
+LayGroup.mcc/MUIA_LayGroup_HorizSpacing
+LayGroup.mcc/MUIA_LayGroup_VertSpacing 
+LayGroup.mcc/MUIA_LayGroup_Spacing     
+LayGroup.mcc/MUIA_LayGroup_LeftOffset  
+LayGroup.mcc/MUIA_LayGroup_TopOffset   
+LayGroup.mcc/MUIA_LayGroup_AskLayout
+LayGroup.mcc/MUIA_LayGroup_InheritBackground
+LayGroup.mcc/MUIA_LayGroup_NumberOfColumns
+LayGroup.mcc/MUIA_LayGroup_NumberOfRows
+LayGroup.mcc/MUIM_LayGroup_AskLayout
+LayGroup.mcc/LayGroup.mcc
+
+LayGroup.mcc is a subclass of Virtgroup.mui that allows
+you to easily layout objects in a variable space.
+The user can change some settings trough LayGroup.mcp.
+You can see the LayGroup-Demo to better understand this 
+class. Starting with version 19.2, you can use
+every object as a child of this class, even if they
+have different vertical/horizontal sizes. 
+LayGroup.mcc/MUIA_Group_SameSize
+
+    NAME
+        MUIA_Group_SameSize -- (V19.2) [I.], BOOL
+
+    FUNCTION
+        Set this if and only if you children's 
+        height/width are all the same. This
+        tag will speedup the on screen layout.
+        Default setting is FALSE.
+
+    NOTES
+        This is a standard MUI attribute, but the
+        meaning isn't the same. Be careful.
+LayGroup.mcc/MUIA_LayGroup_ChildNumber
+
+    NAME
+        MUIA_LayGroup_ChildNumber -- [..G], ULONG
+
+    FUNCTION
+        This attribute let's you know the number
+        of children in the LayGroup.
+
+    NOTES
+        Doesn't work in pre 19.2 releases
+LayGroup.mcc/MUIA_LayGroup_MaxHeight   
+
+    NAME
+        MUIA_LayGroup_MaxHeight -- [I..], WORD (DONOTUSE)
+
+    FUNCTION
+        This attribute is used to inform the LayGroup
+        about the maximum height of its children.
+
+    SPECIAL INPUTS
+        MUIV_LayGroup_MaxHeight_Auto
+        LayGroup will automatically handle the thing
+LayGroup.mcc/MUIA_LayGroup_MaxWidth   
+
+    NAME
+        MUIA_LayGroup_MaxWidth -- [I..], WORD (DONOTUSE)
+
+    FUNCTION
+        This attribute is used to inform the LayGroup
+        about the maximum width of its children.        
+
+    SPECIAL INPUTS
+        MUIV_LayGroup_MaxWidth_Auto
+            LayGroup will automatically handle the thing
+LayGroup.mcc/MUIA_LayGroup_HorizSpacing
+
+    NAME
+        MUIA_LayGroup_HorizSpacing -- [ISG], WORD
+
+    FUNCTION
+        This attribute is used to choice
+        the horizontal spacing between two 
+        objects. Using this attribute will
+        override the user's settings.
+LayGroup.mcc/MUIA_LayGroup_VertSpacing 
+
+    NAME
+        MUIA_LayGroup_VertSpacing -- [ISG], WORD
+
+    FUNCTION
+        This attribute is used to choice
+        the vertical spacing between two 
+        objects. Using this attribute will
+        override the user's settings.
+LayGroup.mcc/MUIA_LayGroup_Spacing     
+
+
+    NAME
+        MUIA_LayGroup_Spacing -- [IS.], WORD
+
+    FUNCTION
+        This attribute is used to choice
+        both horizontal and vertical spacing
+        between two  objects. Using this attribute 
+        will override the user's settings.
+LayGroup.mcc/MUIA_LayGroup_LeftOffset  
+
+    NAME
+        MUIA_LayGroup_LeftOffset -- [ISG], WORD
+
+    FUNCTION
+        This attribute is used to choice
+        the left offset between the object 
+        and its children. Using this attribute 
+        will override the user's settings.
+LayGroup.mcc/MUIA_LayGroup_TopOffset  
+
+    NAME
+        MUIA_LayGroup_TopOffset -- [ISG], WORD
+
+    FUNCTION
+        This attribute is used to choice
+        the top offset between the object 
+        and its children. Using this attribute 
+        will override the user's settings.
+LayGroup.mcc/MUIM_LayGroup_AskLayout
+
+    NAME
+        MUIM_LayGroup_AskLayout (V19.2)
+
+    SYSNOPSIS
+        DoMethod(obj, MUIM_LayGroup_AskLayout, struct MUI_LayGroup_Layout *lgl);
+
+    FUNCTION
+        If MUIA_LayGroup_AskLayout is TRUE and MUIA_Group_SameSize
+        is FALSE, this method will be called to let the subclass
+        choice the width and height of an object.
+
+    INPUTS
+        lgl - a MUI_LayGroup_Layout structure:
+            lgl_Object    - The object under examination
+            lgl_Height  - It's height.
+            lgl_Width     - It's width
+    
+    RESULT
+        Always return 0 for now.
+
+    NOTES
+        This method is for subclass authors only and therefore
+        should not be called directly.
+
+    EXAMPLE
+        This is the default implementation of this method
+        within LayGroup.mcc
+        
+            ULONG ASM _AskLayout(REG(a0) struct IClass *cl, REG(a2) Object *obj, REG(a1) struct MUIP_LayGroup_AskLayout *al)
+            {                                                                                  
+                (al->lgl)->lgl_Width     = _defwidth ((al->lgl)->lgl_Object);
+                (al->lgl)->lgl_Height     = _defheight((al->lgl)->lgl_Object);
+        
+                return(0);
+            }
+
+    SEE ALSO
+        MUIA_LayGroup_AskLayout
+LayGroup.mcc/MUIA_LayGroup_AskLayout
+
+    NAME
+        MUIA_LayGroup_AskLayout -- [I..], BOOL
+
+    FUNCTION
+        Set this attribute if you want to receive
+        the MUIM_LayGroup_AskLayout methods.
+
+    SEE ALSO
+        MUIM_LayGroup_AskLayout
+
+LayGroup.mcc/MUIA_LayGroup_InheritBackground
+
+    NAME
+        MUIA_LayGroup_InheritBackground -- [I..], BOOL
+
+    FUNCTION
+        This attribute is used to force
+        the LayGroup to leave the MUIA_Background
+        tag empty, thus the user selected background
+        will not be loaded.
+
+
+
+
+
+
+
+LayGroup.mcc/MUIA_LayGroup_NumberOfRows
+
+    NAME
+        MUIA_LayGroup_NumberOfRows -- [..G], ULONG
+
+    FUNCTION
+        With this attribute you can know how many
+        rows there are in the laygroup.
+
+    SEE ALSO
+    MUIA_LayGroup_NumberOfColumns
+LayGroup.mcc/MUIA_LayGroup_NumberOfColumns
+
+    NAME
+        MUIA_LayGroup_NumberOfColumns -- [..G], ULONG
+
+    FUNCTION
+        With this attribute you can know how many
+        columns there are in the laygroup.
+
+    SEE ALSO
+    MUIA_LayGroup_NumberOfRows
+

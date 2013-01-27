@@ -1,0 +1,11 @@
+FROM LIB:c.o "MuiWheelPatch.o"
+TO "MuiWheelPatch"
+LIB LIB:StackCall.o LIB:debug.lib LIB:sc.lib LIB:amiga.lib
+SMALLCODE
+SMALLDATA
+STRIPDEBUG
+VERBOSE
+NOICONS
+DEFINE @__chkabort=@__dummy
+
+noalvs

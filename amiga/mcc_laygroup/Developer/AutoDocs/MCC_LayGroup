@@ -1,0 +1,257 @@
+@DATABASE "MCC_LayGroup"
+@MASTER   "Work:SCWork/LayGroup/Developer/AutoDocs/MCC_LayGroup.doc"
+@REMARK   This file was created by ADtoHT 2.1 on 07-Lug-98 19:52:49
+@REMARK   Do not edit
+@REMARK   ADtoHT is © 1993-1995 Christian Stieber
+
+@NODE MAIN "MCC_LayGroup.doc"
+
+                                @{b}LayGroup.mcc@{ub}
+
+@{"LayGroup.mcc()" LINK "LayGroup.mcc"}                @{"MUIA_Group_SameSize()" LINK "MUIA_Group_SameSize"}
+@{"MUIA_LayGroup_AskLayout()" LINK "MUIA_LayGroup_AskLayout"}     @{"MUIA_LayGroup_ChildNumber()" LINK "MUIA_LayGroup_ChildNumber"}
+@{"MUIA_LayGroup_HorizSpacing()" LINK "MUIA_LayGroup_HorizSpacing"}  @{"MUIA_LayGroup_InheritBackground()" LINK "MUIA_LayGroup_InheritBackground"}
+@{"MUIA_LayGroup_LeftOffset()" LINK "MUIA_LayGroup_LeftOffset"}    @{"MUIA_LayGroup_MaxHeight()" LINK "MUIA_LayGroup_MaxHeight"}
+@{"MUIA_LayGroup_MaxWidth()" LINK "MUIA_LayGroup_MaxWidth"}      @{"MUIA_LayGroup_NumberOfColumns()" LINK "MUIA_LayGroup_NumberOfColumns"}
+@{"MUIA_LayGroup_NumberOfRows()" LINK "MUIA_LayGroup_NumberOfRows"}  @{"MUIA_LayGroup_Spacing()" LINK "MUIA_LayGroup_Spacing"}
+@{"MUIA_LayGroup_TopOffset()" LINK "MUIA_LayGroup_TopOffset"}     @{"MUIA_LayGroup_VertSpacing()" LINK "MUIA_LayGroup_VertSpacing"}
+@{"MUIM_LayGroup_AskLayout()" LINK "MUIM_LayGroup_AskLayout"}     
+
+@ENDNODE
+@NODE "LayGroup.mcc" "LayGroup.mcc/LayGroup.mcc()"
+
+
+        LayGroup.mcc is a subclass of Virtgroup.mui that allows
+        you to easily layout objects in a variable space.
+        The user can change some settings trough LayGroup.mcp.
+        You can see the LayGroup-Demo to better understand this
+        class. Starting with version 19.2, you can use
+        every object as a child of this class, even if they
+        have different vertical/horizontal sizes.
+
+@ENDNODE
+@NODE "MUIA_Group_SameSize" "LayGroup.mcc/MUIA_Group_SameSize()"
+@{b}
+
+    NAME@{ub}
+        MUIA_Group_SameSize -- (V19.2) [I.], BOOL@{b}
+
+    FUNCTION@{ub}
+        Set this if and only if you children's
+        height/width are all the same. This
+        tag will speedup the on screen layout.
+        Default setting is FALSE.@{b}
+
+    NOTES@{ub}
+        This is a standard MUI attributre, but the
+        meaning isn't the same. Be careful.
+
+@ENDNODE
+@NODE "MUIA_LayGroup_ChildNumber" "LayGroup.mcc/MUIA_LayGroup_ChildNumber()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_ChildNumber -- [..G], ULONG@{b}
+
+    FUNCTION@{ub}
+        This attribute let's you know the number
+        of children in the LayGroup.@{b}
+
+    NOTES@{ub}
+        Doesn't work in pre 19.2 releases
+
+@ENDNODE
+@NODE "MUIA_LayGroup_MaxHeight" "LayGroup.mcc/MUIA_LayGroup_MaxHeight()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_MaxHeight -- [I..], WORD (DONOTUSE)@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to inform the LayGroup
+        about the maximum height of its children.@{b}
+
+    SPECIAL INPUTS@{ub}
+        MUIV_LayGroup_MaxHeight_Auto
+        LayGroup will automatically handle the thing
+
+@ENDNODE
+@NODE "MUIA_LayGroup_MaxWidth" "LayGroup.mcc/MUIA_LayGroup_MaxWidth()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_MaxWidth -- [I..], WORD (DONOTUSE)@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to inform the LayGroup
+        about the maximum width of its children.@{b}
+
+    SPECIAL INPUTS@{ub}
+        MUIV_LayGroup_MaxWidth_Auto
+            LayGroup will automatically handle the thing
+
+@ENDNODE
+@NODE "MUIA_LayGroup_HorizSpacing" "LayGroup.mcc/MUIA_LayGroup_HorizSpacing()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_HorizSpacing -- [ISG], WORD@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to choice
+        the horizontal spacing between two
+        objects. Using this attribute will
+        override the user's settings.
+
+@ENDNODE
+@NODE "MUIA_LayGroup_VertSpacing" "LayGroup.mcc/MUIA_LayGroup_VertSpacing()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_VertSpacing -- [ISG], WORD@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to choice
+        the vertical spacing between two
+        objects. Using this attribute will
+        override the user's settings.
+
+@ENDNODE
+@NODE "MUIA_LayGroup_Spacing" "LayGroup.mcc/MUIA_LayGroup_Spacing()"
+@{b}
+
+
+    NAME@{ub}
+        MUIA_LayGroup_Spacing -- [IS.], WORD@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to choice
+        both horizontal and vertical spacing
+        between two  objects. Using this attribute
+        will override the user's settings.
+
+@ENDNODE
+@NODE "MUIA_LayGroup_LeftOffset" "LayGroup.mcc/MUIA_LayGroup_LeftOffset()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_LeftOffset -- [ISG], WORD@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to choice
+        the left offset between the object
+        and its children. Using this attribute
+        will override the user's settings.
+
+@ENDNODE
+@NODE "MUIA_LayGroup_TopOffset" "LayGroup.mcc/MUIA_LayGroup_TopOffset()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_TopOffset -- [ISG], WORD@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to choice
+        the top offset between the object
+        and its children. Using this attribute
+        will override the user's settings.
+
+@ENDNODE
+@NODE "MUIM_LayGroup_AskLayout" "LayGroup.mcc/MUIM_LayGroup_AskLayout()"
+@{b}
+
+    NAME@{ub}
+        MUIM_LayGroup_AskLayout (V19.2)@{b}
+
+    SYSNOPSIS@{ub}
+        DoMethod(obj, MUIM_LayGroup_AskLayout, struct MUI_LayGroup_Layout *lgl);@{b}
+
+    FUNCTION@{ub}
+        If @{"MUIA_LayGroup_AskLayout" LINK "MUIA_LayGroup_AskLayout"} is TRUE and @{"MUIA_Group_SameSize" LINK "MUIA_Group_SameSize"}
+        is FALSE, this method will be called to let the subclass
+        choice the width and height of an object.@{b}
+
+    INPUTS@{ub}
+        lgl - a MUI_LayGroup_Layout structure:
+            lgl_Object    - The object under examination
+            lgl_Height  - It's height.
+            lgl_Width     - It's width@{b}
+
+    RESULT@{ub}
+        Always return 0 for now.@{b}
+
+    NOTES@{ub}
+        This method is for subclass authors only and therefore
+        should not be called directly.@{b}
+
+    EXAMPLE@{ub}
+        This is the default implementation of this method
+        within @{"LayGroup.mcc" LINK "LayGroup.mcc"}
+
+            ULONG ASM _AskLayout(REG(a0) struct IClass *cl, REG(a2) Object *obj, REG(a1) struct MUIP_LayGroup_AskLayout *al)
+            {
+                (al->lgl)->lgl_Width     = _defwidth ((al->lgl)->lgl_Object);
+                (al->lgl)->lgl_Height     = _defheight((al->lgl)->lgl_Object);
+
+                return(0);
+            }@{b}
+
+    SEE ALSO@{ub}
+        @{"MUIA_LayGroup_AskLayout" LINK "MUIA_LayGroup_AskLayout"}
+
+@ENDNODE
+@NODE "MUIA_LayGroup_AskLayout" "LayGroup.mcc/MUIA_LayGroup_AskLayout()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_AskLayout -- [I..], BOOL@{b}
+
+    FUNCTION@{ub}
+        Set this attribute if you want to receive
+        the @{"MUIM_LayGroup_AskLayout" LINK "MUIM_LayGroup_AskLayout"} methods.@{b}
+
+    SEE ALSO@{ub}
+        @{"MUIM_LayGroup_AskLayout" LINK "MUIM_LayGroup_AskLayout"}
+
+@ENDNODE
+@NODE "MUIA_LayGroup_InheritBackground" "LayGroup.mcc/MUIA_LayGroup_InheritBackground()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_InheritBackground -- [I..], BOOL@{b}
+
+    FUNCTION@{ub}
+        This attribute is used to force
+        the LayGroup to leave the MUIA_Background
+        tag empty, thus the user selected background
+        will not be loaded.
+
+@ENDNODE
+@NODE "MUIA_LayGroup_NumberOfRows" "LayGroup.mcc/MUIA_LayGroup_NumberOfRows()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_NumberOfRows -- [..G], ULONG@{b}
+
+    FUNCTION@{ub}
+        With this attribute you can know how many
+        rows there are in the laygroup.@{b}
+
+    SEE ALSO@{ub}
+        @{"MUIA_LayGroup_NumberOfColumns" LINK "MUIA_LayGroup_NumberOfColumns"}
+
+@ENDNODE
+@NODE "MUIA_LayGroup_NumberOfColumns" "LayGroup.mcc/MUIA_LayGroup_NumberOfColumns()"
+@{b}
+
+    NAME@{ub}
+        MUIA_LayGroup_NumberOfColumns -- [..G], ULONG@{b}
+
+    FUNCTION@{ub}
+        With this attribute you can know how many
+        columns there are in the laygroup.@{b}
+
+    SEE ALSO@{ub}
+        @{"MUIA_LayGroup_NumberOfRows" LINK "MUIA_LayGroup_NumberOfRows"}
+
+@ENDNODE
